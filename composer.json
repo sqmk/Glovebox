@@ -1,0 +1,25 @@
+{
+    "name": "sqmk/glovebox",
+    "description": "Glovebox",
+    "type": "library",
+    "keywords": [
+        "glovebox",
+        "di",
+        "dependency injection",
+        "container"
+    ],
+    "homepage": "http://github.com/sqmk/glovebox",
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": "5.4.*"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Glovebox": "library/",
+            "GloveboxTest": "tests/"
+        }
+    }
+}
