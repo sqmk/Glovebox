@@ -73,8 +73,13 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     public function testSettingService()
     {
         $this->container->dummy = function () {
-            // Do nothing
+            return 'success';
         };
+
+        $this->assertEquals(
+            'success',
+            $this->container->dummy
+        );
     }
 
     /**
