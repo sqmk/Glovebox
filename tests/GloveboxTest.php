@@ -37,9 +37,18 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Glovebox::getServices
      */
-    public function testNoInitialServices()
+    public function testServiceList()
     {
         $this->assertEmpty(
+            $this->container->getServices()
+        );
+
+        $this->container->dummy = function () {
+            // Do nothing
+        };
+
+        $this->assertContains(
+            'dummy',
             $this->container->getServices()
         );
     }
@@ -47,8 +56,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Throw exception on invalid exception
      *
-     * @covers \Glovebox::__set
-     * @covers \Glovebox::__isset
+     * @coversNothing
      *
      * @expectedException PHPUnit_Framework_Error
      */
@@ -58,16 +66,65 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Throw exception on missing service
+     * Test: Setting a service
      *
      * @covers \Glovebox::__set
-     * @covers \Glovebox::__isset
-     *
-     * @expectedException \DomainException
      */
-    public function testMissingService()
+    public function testSettingService()
+    {
+        $this->container->dummy = function () {
+            // Do nothing
+        };
+    }
+
+    /**
+     * Test: Throw exception on unknown service
+     *
+     * @coversNothing
+     *
+     * @expectedException        \DomainException
+     * @expectedExceptionMessage Unknown service: dummy
+     */
+    public function testUnknownService()
     {
         $this->container->dummy;
+    }
+
+    /**
+     * Test: Throw exception on unknown service options
+     * 
+     * @coversNothing
+     *
+     * @expectedException        \DomainException
+     * @expectedExceptionMessage Unknown service: dummy
+     */
+    public function testUnknownServiceOptions()
+    {
+        $container = $this->container;
+
+        $container('dummy')->persist = true;
+    }
+
+    /**
+     * Test: Deleting service
+     *
+     * @covers \Glovebox::__unset
+     */
+    public function testDeletingService()
+    {
+        $this->container->dummy = function() {
+            // Do nothing
+        };
+
+        $this->assertTrue(
+            isset($this->container->dummy)
+        );
+
+        unset($this->container->dummy);
+
+        $this->assertFalse(
+            isset($this->container->dummy)
+        );
     }
 
     /**
@@ -80,60 +137,109 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty(
             $this->container->getParameters()
         );
+
+        $this->container['param'] = true;
+
+        $this->assertContains(
+            'param',
+            $this->container->getParameters()
+        );
+
     }
 
     /**
-     * Test: Throw exception on missing parameter
+     * Test: Throw exception on unknown parameter
      *
-     * @covers \Glovebox::offsetExists
-     * @covers \Glovebox::offsetSet
+     * @coversNothing
      *
-     * @expectedException \DomainException
+     * @expectedException        \DomainException
+     * @expectedExceptionMessage Unknown parameter: param
      */
-    public function testMissingParameter()
+    public function testUnknownParameter()
     {
         $this->container['param'];
     }
 
     /**
-     * Test: Setting, retrieving, removing services and parameters
+     * Test: Setting a parameter
      *
-     * @covers \Glovebox
+     * @covers \Glovebox::offsetSet
+     */
+    public function testSettingParameter()
+    {
+        $this->container['param'] = true;
+
+        $this->assertTrue(
+            $this->container['param']
+        );
+    }
+
+    /**
+     * Test: Delete a parameter
+     *
+     * @covers \Glovebox::offsetUnset
+     */
+    public function testDeletingParameter()
+    {
+        $this->container['param'] = 'dummy';
+
+        $this->assertTrue(
+            isset($this->container['param'])
+        );
+
+        unset($this->container['param']);
+
+        $this->assertFalse(
+            isset($this->container['param'])
+        );
+    }
+
+    /**
+     * Test: Non-persisted Service
+     *
+     * @coversNothing
      */
     public function testServiceActions()
     {
         $container = $this->container;
 
-        // Set common parameters
         $container['prefix']  = null;
         $container['entropy'] = true;
 
-        // Handle non persistent service
-        $container->dummy = function($container) {
-            return uniqid(
-                $container['prefix'],
-                $container['entropy']
-            );
+        // Set service
+        $container->dummy = function($c) {
+            return uniqid($c['prefix'], $c['entropy']);
         };
 
         $this->assertNotEquals(
             $container->dummy,
             $container->dummy
         );
+    }
 
-        // Handle persistent service
-        $container->dummy2 = function($container) {
-            return uniqid(
-                $container['prefix'],
-                $container['entropy']
-            );
+    /**
+     * Test: Setting, retrieving, removing persisted services and parameters
+     * 
+     * @coversNothing
+     */
+    public function testPersistedServiceActions()
+    {
+        $container = $this->container;
+
+        $container['prefix']  = null;
+        $container['entropy'] = true;
+
+        // Set persistent service
+        $container->dummy = function($c) {
+            return uniqid($c['prefix'], $c['entropy']);
         };
 
-        $container('dummy2')->persist = true;
+        $container('dummy')->persist = true;
 
+        // Requests should be equal
         $this->assertEquals(
-            $container->dummy2,
-            $container->dummy2
+            $container->dummy,
+            $container->dummy
         );
     }
 }
