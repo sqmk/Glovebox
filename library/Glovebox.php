@@ -59,7 +59,7 @@ class Glovebox implements \ArrayAccess
     public function __get($serviceName)
     {
         // Fail if service isn't known
-        if (!isset($this->services[$serviceName])) {
+        if (!$this->__isset($serviceName)) {
             throw new \DomainException("Unknown service: {$serviceName}");
         }
 
@@ -112,7 +112,7 @@ class Glovebox implements \ArrayAccess
      */
     public function __unset($serviceName)
     {
-        unset($this->service[$serviceName]);
+        unset($this->services[$serviceName]);
     }
 
     /**
@@ -125,7 +125,7 @@ class Glovebox implements \ArrayAccess
     public function __invoke($serviceName)
     {
         // Fail if service isn't known
-        if (!isset($this->services[$serviceName])) {
+        if (!$this->__isset($serviceName)) {
             throw new \DomainException("Unknown service: {$serviceName}");
         }
 
