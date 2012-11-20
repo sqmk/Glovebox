@@ -1,6 +1,6 @@
 {
     "name": "sqmk/glovebox",
-    "description": "Glovebox",
+    "description": "Glovebox - A lightweight Dependency Injection Container for PHP 5.4",
     "type": "library",
     "keywords": [
         "glovebox",
