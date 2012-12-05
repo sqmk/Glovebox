@@ -1,12 +1,14 @@
 <phpunit
-    bootstrap="./bootstrap.php" colors="true"
-    convertErrorsToExceptions="true"
+	bootstrap="./bootstrap.php"
+	colors="true"
+	convertErrorsToExceptions="true"
 	convertNoticesToExceptions="true"
 	convertWarningsToExceptions="true"
 	stopOnError="false"
 	stopOnFailure="false"
 	stopOnIncomplete="false"
-	stopOnSkipped="false">
+	stopOnSkipped="false"
+	forceCoversAnnotation="true">
     <testsuites>
         <testsuite name="Glovebox Test Suite">
             <directory>./</directory>
