@@ -4,7 +4,7 @@
  *
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
- * @license   http://github.com/sqmk/LICENSE.txt
+ * @license   http://github.com/sqmk/Glovebox/wiki/License
  * @package   Glovebox
  */
 
