@@ -54,9 +54,9 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test: Throw exception on invalid exception
+     * Test: Throw exception on invalid service
      *
-     * @coversNothing
+     * @covers \Glovebox::__set
      *
      * @expectedException PHPUnit_Framework_Error
      */
@@ -85,7 +85,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Throw exception on unknown service
      *
-     * @coversNothing
+     * @covers \Glovebox::__get
      *
      * @expectedException        \DomainException
      * @expectedExceptionMessage Unknown service: dummy
@@ -98,7 +98,8 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Throw exception on unknown service options
      * 
-     * @coversNothing
+     * @covers \Glovebox::__invoke
+     * @covers \Glovebox::__isset
      *
      * @expectedException        \DomainException
      * @expectedExceptionMessage Unknown service: dummy
@@ -155,7 +156,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Throw exception on unknown parameter
      *
-     * @coversNothing
+     * @covers \Glovebox::offsetGet
      *
      * @expectedException        \DomainException
      * @expectedExceptionMessage Unknown parameter: param
@@ -202,7 +203,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Non-persisted Service
      *
-     * @coversNothing
+     * @covers \Glovebox::offsetGet
      */
     public function testServiceActions()
     {
@@ -224,8 +225,11 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test: Setting, retrieving, removing persisted services and parameters
-     * 
-     * @coversNothing
+     *
+     * @covers \Glovebox::__invoke
+     * @covers \Glovebox::__get
+     * @covers \Glovebox::offsetExists
+     * @covers \Glovebox::offsetGet
      */
     public function testPersistedServiceActions()
     {
