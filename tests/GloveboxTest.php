@@ -9,8 +9,6 @@
 
 /**
  * Glovebox Tests
- *
- * @package Glovebox
  */
 class GloveboxTest extends \PHPUnit_Framework_TestCase
 {
