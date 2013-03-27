@@ -5,22 +5,19 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Glovebox/wiki/License
- * @package   Glovebox
  */
 
 /**
  * Glovebox Tests
  *
- * @package    Glovebox
- * @subpackage UnitTests
- * @group      Glovebox
+ * @package Glovebox
  */
 class GloveboxTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Glovebox container
      *
-     * @var \Glovebox Container
+     * @var \Glovebox
      */
     protected $container;
 
@@ -97,7 +94,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test: Throw exception on unknown service options
-     * 
+     *
      * @covers \Glovebox::__invoke
      * @covers \Glovebox::__isset
      *

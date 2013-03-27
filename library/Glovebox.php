@@ -5,13 +5,10 @@
  * @author    Michael Squires <sqmk@php.net>
  * @copyright Copyright (c) 2012 Michael K. Squires
  * @license   http://github.com/sqmk/Glovebox/wiki/License
- * @package   Glovebox
  */
 
 /**
  * Glovebox Container
- *
- * @package Glovebox
  */
 class Glovebox implements \ArrayAccess
 {
@@ -80,8 +77,6 @@ class Glovebox implements \ArrayAccess
      *
      * @param string $serviceName Service name
      * @param \Closure $factory Service generator
-     *
-     * @return void
      */
     public function __set($serviceName, \Closure $factory)
     {
@@ -107,8 +102,6 @@ class Glovebox implements \ArrayAccess
      * Remove a service
      *
      * @param string $serviceName Service name
-     *
-     * @return void
      */
     public function __unset($serviceName)
     {
@@ -165,8 +158,6 @@ class Glovebox implements \ArrayAccess
      *
      * @param string $parameter Parameter name
      * @param mixed $value Value
-     *
-     * @return void
      */
     public function offsetSet($parameter, $value)
     {
@@ -177,8 +168,6 @@ class Glovebox implements \ArrayAccess
      * Unset parameter
      *
      * @param string $parameter Parameter name
-     *
-     * @return void
      */
     public function offsetUnset($parameter)
     {
