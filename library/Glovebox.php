@@ -3,7 +3,7 @@
  * Glovebox: Lightweight Dependency Injection Container
  *
  * @author    Michael Squires <sqmk@php.net>
- * @copyright Copyright (c) 2012 Michael K. Squires
+ * @copyright Copyright (c) 2012-2013 Michael K. Squires
  * @license   http://github.com/sqmk/Glovebox/wiki/License
  */
 
