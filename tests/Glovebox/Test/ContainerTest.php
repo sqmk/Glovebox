@@ -7,7 +7,7 @@
  * @license   http://github.com/sqmk/Glovebox/wiki/License
  */
 
-namespace GloveboxTest;
+namespace Glovebox\Test;
 
 use Glovebox\Container;
 
