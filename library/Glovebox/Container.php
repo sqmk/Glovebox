@@ -7,10 +7,12 @@
  * @license   http://github.com/sqmk/Glovebox/wiki/License
  */
 
+namespace Glovebox;
+
 /**
  * Glovebox Container
  */
-class Glovebox implements \ArrayAccess
+class Container implements \ArrayAccess
 {
     /**
      * Services
