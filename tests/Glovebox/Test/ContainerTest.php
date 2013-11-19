@@ -7,15 +7,19 @@
  * @license   http://github.com/sqmk/Glovebox/wiki/License
  */
 
+namespace Glovebox\Test;
+
+use Glovebox\Container;
+
 /**
- * Glovebox Tests
+ * Container Tests
  */
-class GloveboxTest extends \PHPUnit_Framework_TestCase
+class ContainerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Glovebox container
      *
-     * @var \Glovebox
+     * @var Container
      */
     protected $container;
 
@@ -24,13 +28,13 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->container = new \Glovebox();
+        $this->container = new Container;
     }
 
     /**
      * Test: Service list
      *
-     * @covers \Glovebox::getServices
+     * @covers \Glovebox\Container::getServices
      */
     public function testServiceList()
     {
@@ -51,7 +55,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Throw exception on invalid service
      *
-     * @covers \Glovebox::__set
+     * @covers \Glovebox\Container::__set
      *
      * @expectedException PHPUnit_Framework_Error
      */
@@ -63,7 +67,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Setting a service
      *
-     * @covers \Glovebox::__set
+     * @covers \Glovebox\Container::__set
      */
     public function testSettingService()
     {
@@ -80,7 +84,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Throw exception on unknown service
      *
-     * @covers \Glovebox::__get
+     * @covers \Glovebox\Container::__get
      *
      * @expectedException        \DomainException
      * @expectedExceptionMessage Unknown service: dummy
@@ -93,8 +97,8 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Throw exception on unknown service options
      *
-     * @covers \Glovebox::__invoke
-     * @covers \Glovebox::__isset
+     * @covers \Glovebox\Container::__invoke
+     * @covers \Glovebox\Container::__isset
      *
      * @expectedException        \DomainException
      * @expectedExceptionMessage Unknown service: dummy
@@ -109,7 +113,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Deleting service
      *
-     * @covers \Glovebox::__unset
+     * @covers \Glovebox\Container::__unset
      */
     public function testDeletingService()
     {
@@ -131,7 +135,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Parameter list
      *
-     * @covers \Glovebox::getParameters
+     * @covers \Glovebox\Container::getParameters
      */
     public function testNoInitialParameters()
     {
@@ -151,7 +155,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Throw exception on unknown parameter
      *
-     * @covers \Glovebox::offsetGet
+     * @covers \Glovebox\Container::offsetGet
      *
      * @expectedException        \DomainException
      * @expectedExceptionMessage Unknown parameter: param
@@ -164,7 +168,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Setting a parameter
      *
-     * @covers \Glovebox::offsetSet
+     * @covers \Glovebox\Container::offsetSet
      */
     public function testSettingParameter()
     {
@@ -178,7 +182,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Delete a parameter
      *
-     * @covers \Glovebox::offsetUnset
+     * @covers \Glovebox\Container::offsetUnset
      */
     public function testDeletingParameter()
     {
@@ -198,7 +202,7 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Non-persisted Service
      *
-     * @covers \Glovebox::offsetGet
+     * @covers \Glovebox\Container::offsetGet
      */
     public function testServiceActions()
     {
@@ -221,10 +225,10 @@ class GloveboxTest extends \PHPUnit_Framework_TestCase
     /**
      * Test: Setting, retrieving, removing persisted services and parameters
      *
-     * @covers \Glovebox::__invoke
-     * @covers \Glovebox::__get
-     * @covers \Glovebox::offsetExists
-     * @covers \Glovebox::offsetGet
+     * @covers \Glovebox\Container::__invoke
+     * @covers \Glovebox\Container::__get
+     * @covers \Glovebox\Container::offsetExists
+     * @covers \Glovebox\Container::offsetGet
      */
     public function testPersistedServiceActions()
     {

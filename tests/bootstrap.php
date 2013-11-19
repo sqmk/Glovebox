@@ -8,4 +8,4 @@
  */
 
 $autoloader = require __DIR__ . '/../vendor/autoload.php';
-$autoloader->add('GloveboxTest', __DIR__);
+$autoloader->add('Glovebox\\Test\\', __DIR__);
